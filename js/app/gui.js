@@ -1,6 +1,8 @@
 define(function (require) {
     var resource_js = require('app/resource'),
-        building_js = require('app/building');
+        building_js = require('app/building'),
+        w2ui = require('w2ui-1.4.2'),
+        $ = require('jquery');
 });
 
 function write_log(message) {
@@ -60,6 +62,60 @@ function create_controls() {
         }, build);
     }
 }
+
+function generate_basic_buttons() {
+    var generated_buttons = "<button id='btn_stone'>Rummage for Stone</button>";
+    generated_buttons += "<button id='btn_biomass'>Scrape up Detritus</button>";
+    generated_buttons += "<button id='btn_consume' title='Devour Biomass to unlock your potential'>CONSUME</button>";
+    //add listeners to buttons
+    return generated_buttons;
+}
+
+function generate_panel(panel) {
+    var panel_contents;
+    console.log(panel);
+    if (panel == 'tab_control') {
+        panel_contents = generate_basic_buttons();
+    } else if (panel == 'tab_tech') {
+        
+    } else {
+        panel_contents = 'tab ' + panel + ' is currently active';
+    }
+    return panel_contents;
+}
+
+function activate_panel(panel) {
+    $("#btn_stone").on("click", collect_stone);
+    $("#btn_biomass").on("click", collect_biomass);
+    $("#btn_consume").on("click", consume);   
+}
+
+function initialise_gui() {
+    var pstyle = 'border: 1px solid #dfdfdf; padding: 5px;';
+    $('#mainwindow').w2layout({
+        name: 'mainwindow',
+        panels: [
+            { type: 'top', size: 30, resizable: true, style: pstyle, content: 'Steam Lizards v0.06' },
+            { type: 'left', size: 200, resizable: true, style: pstyle, content: '<div id="storage"></div>' },
+            { type: 'main', style: pstyle + 'border-top: 0px;', content: generate_panel('tab_control'),
+                tabs: {
+                    active: 'tab_control',
+                    tabs: [
+                        { id: 'tab_control', caption: 'Control' },
+                        { id: 'tab_tech', caption: 'Technology' },
+                        { id: 'tab_minion', caption: 'Minions' },
+                    ],
+                    onClick: function (event) {
+                        this.owner.content('main', generate_panel(event.target));
+                        activate_panel(event.target);
+                    }
+                }
+            },
+            { type: 'right', size: 200, resizable: true, style: pstyle, content: 'Captains "Log":<p id="log_contents"></p>'}
+        ]
+    });
+}
+
 
 function update_gui() {
     display_resources();

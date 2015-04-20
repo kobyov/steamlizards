@@ -86,10 +86,9 @@ function manage_technology() {
         }
         if (tech_visible(tech)) {
             var button = $("#btn_" + tech);
-            if (jQuery.contains(document.documentElement, button[0])) {
-                continue;
-            } else {
-                $("#control").append("<button id='btn_" + tech + "'>" + technology[tech].name + "</button>");
+            if (!jQuery.contains(document.documentElement, button[0])) {
+                console.log(tech + ' is now available');
+                $("#tech").append("<button id='btn_" + tech + "'>" + technology[tech].name + "</button>");
                 $("#btn_" + tech).on("click", {tech: tech}, research);
                 $("#btn_" + tech).attr("disabled", true);
             }

@@ -116,6 +116,8 @@ function initialise_gui() {
             { type: 'right', size: 200, resizable: false, style: pstyle, content: 'Captains "Log":<p id="log_contents"></p>'}
         ]
     });
+    w2ui.mainwindow.panels[2].tabs.hide('tab_tech');
+    w2ui.mainwindow.panels[2].tabs.hide('tab_minion');
     generate_basic_buttons();
 }
 

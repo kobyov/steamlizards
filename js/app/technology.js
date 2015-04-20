@@ -45,6 +45,7 @@ function tech_visible(tech) {
         }
         if (resource[req].value >= technology[tech].cost[req].value / 2) {
             visible = true;
+            w2ui.mainwindow.panels[2].tabs.show('tab_tech');
         } else {
             return false;
         }

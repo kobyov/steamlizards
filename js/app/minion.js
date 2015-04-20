@@ -32,6 +32,7 @@ function spawn_minion(house) {
     write_log("A " + minions[house].name + " has hatched</br>");
     minions[house].spawning -= 1;
     consumption[minions[house].consumption.resource] += minions[house].consumption.rate;
+    w2ui.mainwindow.panels[2].tabs.show('tab_minion');
     $("#" + house + "_name").show();
     $("#" + house + "_count").show();
     $("#" + house + "_count").html(minions[house].current);

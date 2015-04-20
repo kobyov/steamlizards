@@ -98,7 +98,7 @@ function initialise_gui() {
     $('#mainwindow').w2layout({
         name: 'mainwindow',
         panels: [
-            { type: 'top', size: 30, resizable: false, style: pstyle, content: 'Steam Lizards v0.07' },
+            { type: 'top', size: 30, resizable: false, style: pstyle, content: 'Steam Lizards v0.08' },
             { type: 'left', size: 200, resizable: false, style: pstyle, content: '<div id="storage"></div>' },
             { type: 'main', style: pstyle + 'border-top: 0px;', content: control_divs,
                 tabs: {

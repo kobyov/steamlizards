@@ -15,19 +15,23 @@ var consumption = {
 var resource = {
     'stone': {
         'name': 'Stone',
-        'value': 0
+        'value': 0,
+        'visible': true
     },
     'biomass': {
         'name': 'Biomass',
-        'value': 0
+        'value': 0,
+        'visible': true
     },
     'mutagen': {
         'name': 'Mutagen',
-        'value': 0
+        'value': 0,
+        'visible': false
     },
     'flint' : {
         'name': 'Flint',
-        'value' : 0
+        'value' : 0,
+        'visible': false
     }
 };
 
@@ -52,9 +56,10 @@ function collect_biomass() {
 function consume() {
     resource.biomass.value -= 5;
     resource.mutagen.value += 1;
+    resource.mutagen.visible = true;
 }
 
-function gather_resource() {
+function update_resources() {
     for (res in generation) {
         resource[res].value += generation[res];
     }

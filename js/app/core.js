@@ -15,7 +15,7 @@ define(function (require) {
     //content goes here
     console.log(resource.stone.value);
     function tick() {
-        gather_resource();
+        update_resources();
         update_gui();
     }
     $(function() {

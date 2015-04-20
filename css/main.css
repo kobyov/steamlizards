@@ -1,0 +1,21 @@
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 20%;
+    background-color: #000;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 10000;
+}
+
+#mainwindow {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 700px;
+    background-color: #b0e0e6;
+}

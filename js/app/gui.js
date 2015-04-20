@@ -55,6 +55,13 @@ function create_controls() {
             structure: structure
         }, build);
     }
+    for (minion in minions) {
+        if (!minions.hasOwnProperty(minion)) {
+            //The current property is not a direct property
+            continue;
+        }
+        $("#minion").append("<span id='" + minion + "_name', style='display:none'>" + minions[minion].name + "</span> <span id='" + minion + "_count', style='display:none'>" + minions[minion].current + "</span>\n");
+    }
 }
 
 function generate_basic_buttons() {
@@ -64,7 +71,7 @@ function generate_basic_buttons() {
     //add listeners to buttons
     $("#btn_stone").on("click", collect_stone);
     $("#btn_biomass").on("click", collect_biomass);
-    $("#btn_consume").on("click", consume); 
+    $("#btn_consume").on("click", consume);
 }
 
 function switch_panel(panel) {
@@ -91,8 +98,8 @@ function initialise_gui() {
     $('#mainwindow').w2layout({
         name: 'mainwindow',
         panels: [
-            { type: 'top', size: 30, resizable: true, style: pstyle, content: 'Steam Lizards v0.07' },
-            { type: 'left', size: 200, resizable: true, style: pstyle, content: '<div id="storage"></div>' },
+            { type: 'top', size: 30, resizable: false, style: pstyle, content: 'Steam Lizards v0.07' },
+            { type: 'left', size: 200, resizable: false, style: pstyle, content: '<div id="storage"></div>' },
             { type: 'main', style: pstyle + 'border-top: 0px;', content: control_divs,
                 tabs: {
                     active: 'tab_control',
@@ -106,12 +113,11 @@ function initialise_gui() {
                     }
                 }
             },
-            { type: 'right', size: 200, resizable: true, style: pstyle, content: 'Captains "Log":<p id="log_contents"></p>'}
+            { type: 'right', size: 200, resizable: false, style: pstyle, content: 'Captains "Log":<p id="log_contents"></p>'}
         ]
     });
     generate_basic_buttons();
 }
-
 
 function update_gui() {
     display_resources();
